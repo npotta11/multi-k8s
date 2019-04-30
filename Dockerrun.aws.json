@@ -1,0 +1,37 @@
+{
+    "AWSEBDockerrunVersion":2,
+    "containerDefinitions": [
+       {
+           "name": "client",
+           "image": "npotta/multi-client",
+           "hostname": "client",
+           "essential": false
+       },
+       {
+        "name": "server",
+        "image": "npotta/multi-server",
+        "hostname": "api",
+        "essential": false
+       },
+       {
+        "name": "worker",
+        "image": "npotta/multi-worker",
+        "hostname": "worker",
+        "essential": false
+       },
+       {
+        "name": "nginx",
+        "image": "npotta/multi-nginx",
+        "hostname": "nginx",
+        "essential": true,
+        "portMappings": [
+            {
+                "hostport": 80,
+                "containerPort": 80
+            }
+        ],
+        "links": [ "client", "server"]
+
+       }
+    ]
+}

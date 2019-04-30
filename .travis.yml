@@ -20,3 +20,15 @@ after_success:
  - docker push npotta/multi-nginx
  - docker push npotta/multi-server
  - docker push npotta/multi-worker
+
+deploy:
+  provider: elasticbeanstalk
+  region: us-east-1
+  app: multi-docker-new
+  env: MultiDockerNew-env
+  bucket_name: elasticbeanstalk-us-east-1-826212554276
+  bucket_path: docker-multi-new
+on:
+  branch: master
+access_key_id: $AWS_ACCESS_KEY
+secret_access_key: $AWS_SECRET_KEY
